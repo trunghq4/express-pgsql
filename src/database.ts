@@ -14,7 +14,7 @@ const client = new Pool({
     host: HOST,
     database: DB,
     user: USER,
-    password: PASS
+    password: ''+PASS
 })
 
 export default client;
