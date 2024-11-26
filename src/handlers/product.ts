@@ -12,7 +12,8 @@ const create = async (rq: Request, res: Response) => {
     const {name, price, category} = rq.body;
     if(!name || !price){
         res.status(400);
-        res.send('Missing data')
+        res.send('Missing data');
+        return;
     }
     const prod = {name, price, category};
     const newProd = await model.create(prod);

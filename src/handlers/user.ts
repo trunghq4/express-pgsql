@@ -14,11 +14,13 @@ const create = async (rq: Request, res: Response) => {
         const { firstName, lastName, password } = rq.body;
         if(!firstName || !lastName || !password){
             res.status(400);
-            res.send('Missing data')
+            res.send('Missing data');
+            return;
         }
         const userExists = await model.getUserByName(firstName, lastName);
         if (userExists) {
             res.status(400).send('Duplicate user');
+            return;
         }
         const user: User = {
             firstName,

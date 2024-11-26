@@ -1,5 +1,4 @@
 import client from "../database";
-import * as Helper from "../utils/helpers";
 
 export type Product = {
     id?: number,
