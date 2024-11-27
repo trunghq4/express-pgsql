@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Product, ProductModel } from "../models/productModel";
+import authenticate from "../middleware/auth";
 
 const model = new ProductModel();
 
@@ -30,7 +31,7 @@ const show = async (rq: Request, res: Response) => {
 
 const productRoutes = (app: express.Application) => {
     app.get('/products', index);
-    app.post('/products', create);
+    app.post('/products', authenticate, create);
     app.get('/products/:id/details', show);
 }
 

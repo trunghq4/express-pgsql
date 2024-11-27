@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { User, UserModel } from "../models/userModel";
 import * as Helper from "../utils/helpers";
+import authenticate from "../middleware/auth";
 
 const model = new UserModel();
 
@@ -48,9 +49,9 @@ const show = async (rq: Request, res: Response) => {
 }
 
 const userRoutes = (app: express.Application) => {
-    app.get('/users', index);
-    app.post('/users', create);
-    app.get('/users/:userId/details', show);
+    app.get('/users', authenticate, index);
+    app.post('/users/create', create);
+    app.get('/users/:userId', authenticate, show);
 }
 
 export default userRoutes;

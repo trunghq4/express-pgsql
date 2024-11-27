@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { OrderModel } from "../models/orderModel";
+import authenticate from "../middleware/auth";
 
 dotenv.config();
 
@@ -15,7 +16,6 @@ const getCurrentOrder = async (rq: Request, res: Response) => {
     const decoded = jwt.verify(token, tokenSecret)
     const userId = parseInt(rq.params.userId);
     // @ts-ignore
-    // @ts-ignore
     if (decoded.user.id !== userId) {
         throw new Error('User id does not match!')
     }
@@ -24,7 +24,7 @@ const getCurrentOrder = async (rq: Request, res: Response) => {
 }
 
 const orderRoutes = (app: express.Application) => {
-    app.get('/orders-by-user/:userId', getCurrentOrder);
+    app.get('/orders-by-user/:userId', authenticate, getCurrentOrder);
 }
 
 export default orderRoutes;
