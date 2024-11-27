@@ -23,7 +23,7 @@ describe('UserModel', () => {
 
     // Test index method
     describe('UserModel Test', () => {
-        it('Test list user', async () => {
+        it('Test user index', async () => {
             console.log('UserModel.index');
             
             const mockUsers: User[] = [
@@ -38,7 +38,7 @@ describe('UserModel', () => {
             expect(mockClient.connect).toHaveBeenCalled();
             expect(mockClient.connect().release).toHaveBeenCalled();
         });
-        it('Test show user', async () => {
+        it('Test user show', async () => {
             console.log('UserModel.show');
             const mockUser: User = { id: 1, firstName: 'A', lastName: 'Nguyen', password: 'password123' };
 
@@ -49,7 +49,7 @@ describe('UserModel', () => {
             expect(mockClient.connect).toHaveBeenCalled();
             expect(mockClient.connect().release).toHaveBeenCalled();
         });
-        it('create new user', async () => {
+        it('Test user create', async () => {
             console.log('UserModel.create');
             const newUser: User = { firstName: 'A', lastName: 'Nguyen', password: 'password123' };
             const mockCreatedUser: User = { id: 1, firstName: 'A', lastName: 'Nguyen', password: 'encryptedPassword123' };
