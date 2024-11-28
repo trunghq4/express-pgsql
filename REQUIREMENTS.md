@@ -5,38 +5,42 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
+- Index: GET "/products"
+- Show: POST "/products/:id/details"
+- Create [token required]: POST "products/create"
 - [OPTIONAL] Top 5 most popular products 
 - [OPTIONAL] Products by category (args: product category)
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+- Index [token required]: GET "users/"
+- Show [token required]: GET "users/:userId"
+- Create N[token required]: POST "users/create"
 
 #### Orders
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required]: GET "/orders-by-user/:userId"
 - [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
+-  id: primary serial numeric
+- name: varchar
+- price: numeric
 - [OPTIONAL] category
 
 #### User
-- id
-- firstName
-- lastName
-- password
+- id: primary serial numeric
+- firstName: varchar
+- lastName: varchar
+- password: varchar
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
+- id: primary serial numeric
+- user_id: numeric
 - status of order (active or complete)
+
+### Order to product
+- id: primary serial numeric
+- id order: numeric
+- id product: numeric
+- quantity: numeric
 

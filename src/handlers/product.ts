@@ -26,12 +26,11 @@ const show = async (rq: Request, res: Response) => {
     const prod: Product = await model.show(prodId);
 
     res.json(prod);
-
 }
 
 const productRoutes = (app: express.Application) => {
     app.get('/products', index);
-    app.post('/products', authenticate, create);
+    app.post('/products/create', authenticate, create);
     app.get('/products/:id/details', show);
 }
 

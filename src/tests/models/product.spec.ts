@@ -1,5 +1,5 @@
-import { ProductModel, Product } from '../models/productModel';
-import client from '../database';
+import { ProductModel, Product } from '../../models/productModel';
+import client from '../../database';
 
 describe('ProductModel', () => {
     let productModel: ProductModel;

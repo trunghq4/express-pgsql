@@ -1,6 +1,6 @@
-import { UserModel, User } from '../models/userModel';
-import client from '../database';
-import * as Helper from '../utils/helpers';
+import { UserModel, User } from '../../models/userModel';
+import client from '../../database';
+import * as Helper from '../../utils/helpers';
 
 describe('UserModel', () => {
     let userModel: UserModel;
@@ -24,8 +24,6 @@ describe('UserModel', () => {
     // Test index method
     describe('UserModel Test', () => {
         it('Test user index', async () => {
-            console.log('UserModel.index');
-            
             const mockUsers: User[] = [
                 { id: 1, firstName: 'A', lastName: 'Nguyen', password: 'password123' },
                 { id: 2, firstName: 'B', lastName: 'Tran', password: 'password456' },
@@ -39,7 +37,6 @@ describe('UserModel', () => {
             expect(mockClient.connect().release).toHaveBeenCalled();
         });
         it('Test user show', async () => {
-            console.log('UserModel.show');
             const mockUser: User = { id: 1, firstName: 'A', lastName: 'Nguyen', password: 'password123' };
 
             mockClient.connect().query.and.returnValue({ rows: [mockUser] });
@@ -50,7 +47,6 @@ describe('UserModel', () => {
             expect(mockClient.connect().release).toHaveBeenCalled();
         });
         it('Test user create', async () => {
-            console.log('UserModel.create');
             const newUser: User = { firstName: 'A', lastName: 'Nguyen', password: 'password123' };
             const mockCreatedUser: User = { id: 1, firstName: 'A', lastName: 'Nguyen', password: 'encryptedPassword123' };
 
@@ -65,7 +61,6 @@ describe('UserModel', () => {
         });
         
         it('User exist', async () => {
-            console.log('UserModel.getUserByName count > 0');
             mockClient.connect().query.and.returnValue({ rows: [{ count: 1 }] });
 
             const result = await userModel.getUserByName('A', 'Nguyen');
@@ -75,7 +70,6 @@ describe('UserModel', () => {
         });
 
         it('User not found', async () => {
-            console.log('UserModel.getUserByName count = 0');
             mockClient.connect().query.and.returnValue({ rows: [{ count: 0 }] });
 
             const result = await userModel.getUserByName('A', 'Nguyen');

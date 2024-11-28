@@ -15,9 +15,12 @@ const getCurrentOrder = async (rq: Request, res: Response) => {
     
     const decoded = jwt.verify(token, tokenSecret)
     const userId = parseInt(rq.params.userId);
+    
     // @ts-ignore
     if (decoded.user.id !== userId) {
-        throw new Error('User id does not match!')
+        res.status(401);
+        res.send('User id does not match!')
+        return;
     }
     const products = await model.getCurrentOrderByUserId(userId);
     res.json(products);

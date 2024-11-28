@@ -1,5 +1,5 @@
-import { OrderModel } from '../models/orderModel';
-import client from '../database';
+import { OrderModel } from '../../models/orderModel';
+import client from '../../database';
 
 describe('OrderModel', () => {
     let orderModel: OrderModel;
@@ -22,7 +22,6 @@ describe('OrderModel', () => {
 
     describe('getCurrentOrderByUserId()', () => {
         it('return order success', async () => {
-            console.log('getOrder');
             const userId = 1;
             const mockOrders = [
                 {
@@ -54,7 +53,6 @@ describe('OrderModel', () => {
         });
 
         it('return empty order', async () => {
-            console.log('getOrder return empty');
             const userId = 2;
             const mockEmptyOrders: any[] = [];
 
